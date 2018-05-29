@@ -6,7 +6,7 @@
 %
 % Auteur: Mounir Bendali-Braham
 % Date de création : Septembre 2017
-% Date de dernière modification : 26 Novembre 2017
+% Date de dernière modification : 30 Mai 2017
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear; close all; clc;
