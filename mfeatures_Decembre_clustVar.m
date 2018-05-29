@@ -1,14 +1,17 @@
 %% Programme principal de classification Kmeans des variables mfeatures
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 
+% Ce script fait appel √† l'algorithme ClustVar 'Som_cov_2' (Clustering de variables
+% tel que d√©crit par Vigneau et El Qannari, mais sans qu'il soit initialis√© par une 
+% proc√©dure de classification hi√©rarchique)
+%
 % Auteur: Mounir Bendali-Braham
-% Date de crÈation : Septembre 2017
-% Date de derniËre modification : 26 Novembre 2017
+% Date de cr√©ation : Septembre 2017
+% Date de derni√®re modification : 26 Novembre 2017
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear; close all; clc;
 
-%% Importation des donnÈes mfeatures
+%% Importation des donn√©es mfeatures
 fac = importdata('./mfeat/mfeat-fac');
 fou = importdata('./mfeat/mfeat-fou');
 zer = importdata('./mfeat/mfeat-zer');
@@ -20,7 +23,7 @@ Starts = 1;
 Ends = 2000;
 nbIndividus = 2000;
 
-%% Chargement des donnÈes
+%% Chargement des donn√©es
 
 etude(1) = {fac(Starts:Ends, 1:216)};
 etude(2) = {fou(Starts:Ends, 1:76)};
@@ -31,13 +34,13 @@ etude(4) = {mor(Starts:Ends, 1:6)};
 
 nbEtudes = size(etude, 2);
 
-%% Normaliser les donnÈes
+%% Normaliser les donn√©es
 
 for t= 1:nbEtudes
     etudeN(t) = {normaliser(cell2mat(etude(t)))};
 end;
 
-%% CrÈation de la matrice des donnÈes dataMatrix
+%% Cr√©ation de la matrice des donn√©es dataMatrix
 
 dataMatrix = [];
 
@@ -45,25 +48,25 @@ for t= 1:nbEtudes
     dataMatrix = [dataMatrix, cell2mat(etudeN(t))];
 end;
 
-tDataMatrix = dataMatrix'; % DonnÈes transposÈes pour classer les variables
+tDataMatrix = dataMatrix'; % Donn√©es transpos√©es pour classer les variables
 
-%% Matrice de corrÈlations et visualisation
+%% Matrice de corr√©lations et visualisation
 
 corr = corrcoef(dataMatrix);
 imagesc(corr);
 caxis([0, 1]);
 colorbar;
-title('Matrice des corrÈlations des variables');
+title('Matrice des corr√©lations des variables');
 
-%% PrÈparation de la classification
+%% Pr√©paration de la classification
 
 maxIter = 1000;
 nbCentres = 4;
-varNbReferents = [3:8]; % On fait varier le nombre de rÈfÈrents
-nbVariations_nbReferents = length(varNbReferents); % Le nombre de variations du nombre de rÈfÈrents
+varNbReferents = [3:8]; % On fait varier le nombre de r√©f√©rents
+nbVariations_nbReferents = length(varNbReferents); % Le nombre de variations du nombre de r√©f√©rents
 nbExecutions = 50;
 
-%% PrÈparation du calcul des performances
+%% Pr√©paration du calcul des performances
 
 nbClasse1 = 216;
 nbClasse2 = 76;
@@ -131,7 +134,7 @@ for nbRef = 1:nbVariations_nbReferents
     
     clearvars index_classif_parInit;
     
-    % Calcul des quantitÈs N11, N01, N10, N00, et ensuite des performances
+    % Calcul des quantit√©s N11, N01, N10, N00, et ensuite des performances
     
     n11_parInit = 0;
     n10_parInit = 0;
